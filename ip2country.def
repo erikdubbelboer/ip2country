@@ -1,0 +1,2 @@
+mixed ip2country(mixed ip [, bool full = false])
+string code2country(string code)
