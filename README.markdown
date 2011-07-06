@@ -44,7 +44,7 @@ The module introduces 3 new functions to php.
 <pre>
 mixed ip2country(mixed ip [, bool fullname])
 string code2country(string code)
-array ip2country\_stat()
+array ip2country_stat()
 </pre>
 
 You can use the ip2country function to get the country code for a specific
@@ -52,7 +52,7 @@ ip address. If fullname is set to true a array containing both the code and
 name is returned.
 
 <pre>
-$code = ip2country($\_SERVER['REMOTE\_ADDR']);
+$code = ip2country($_SERVER['REMOTE_ADDR']);
 </pre>
 
 The code2country function can be used to look up the full name of a country.
