@@ -19,22 +19,29 @@ unzip GeoIPCountryCSV.zip
 ./makedb GeoIPCountryWhois.csv /var/www/geoip.db
 </pre>
 
-Where /var/www/geoip.db is the location where you want to store your database file.
+Where `/var/www/geoip.db` is the location where you want to store your database file.
 
 
 To install the module, run:
 
 <pre>
 phpize
-./configure
+./configure CFLAGS="-O3"
 make
-make install
-cp ip2country.ini /etc/php/cgi-php5/ext-active/ip2country.ini
+sudo make install
 </pre>
 
-Where /etc/php/cgi-php5/ext-active/ is the location of your distributions php extension ini files.
-You will need to edit the ip2country.ini file to point to your module and database file.
+You will need to edit the `ip2country.ini` file to point to your extension and database file. You can find your extension directory using:
 
+<pre>
+php-config --extension-dir
+</pre>
+
+Now copy `ip2country.ini` to your php install's configuration directory. On Gentoo this will usually be `/etc/php/cgi-php5/ext-active/`. On Ubuntu this will be `/etc/php5/conf.d`
+
+<pre>
+cp ip2country.ini /etc/php5/conf.d/
+</pre>
 
 Usage
 =====
@@ -47,9 +54,7 @@ string code2country(string code)
 array ip2country_stat()
 </pre>
 
-You can use the ip2country function to get the country code for a specific
-ip address. If fullname is set to true a array containing both the code and
-name is returned.
+You can use the ip2country function to get the country code for a specific ip address. If fullname is set to true an array containing both the code and name is returned.
 
 <pre>
 $code = ip2country($_SERVER['REMOTE_ADDR']);

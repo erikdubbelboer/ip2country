@@ -363,8 +363,8 @@ int main(int argc, char* argv[]) {
 	unsigned int  start = 0;
 	unsigned int  end   = 0;
 	char          code[4];
-	char	      name[60];
-	char	      dummy[64];
+	char	        name[60];
+	char	        dummy[512];
 	range_tree_t* node;
 	
 	memset(code, 0, sizeof(code));
@@ -372,7 +372,17 @@ int main(int argc, char* argv[]) {
 
 	unsigned int rows = 0;
 
-	while (fscanf(fp, "%[^,],%[^,],\"%u\",\"%u\",\"%2c\",\"%59[^\"]\"", &dummy, &dummy, &start, &end, code, name) == 6) {
+  for (;;) {
+	  int n = fscanf(fp, "%[^,],%[^,],\"%u\",\"%u\",\"%2c\",\"%59[^\"]\"", &dummy, &dummy, &start, &end, code, name);
+   
+    if (n != 6) {
+      if (fgets(dummy, 512, fp) == NULL) {
+        break;
+      }
+
+      continue;
+    }
+
 		node          = (range_tree_t*)malloc(sizeof(range_tree_t));
 		node->start   = start;
 		node->end     = end;
@@ -385,15 +395,15 @@ int main(int argc, char* argv[]) {
 		rows++;
 	}
 
-	fclose(fp);
+  fclose(fp);
+
 
 	printf("%u ranges read from the input file\n", rows);
 
 	if (rows == 0) {
-		printf("nothing to output.\n");
-		return 0;
+	  printf("nothing to output.\n");
+	  return 0;
 	}
-
 
 
 	fp = fopen(argv[2], "wb");
