@@ -5,6 +5,6 @@ PHP_ARG_ENABLE(ip2country, whether to enable ip2country support,
 [  --enable-ip2country     Enable ip2country support])
 
 if test "$PHP_IP2COUNTRY" != "no"; then
-
+  CFLAGS="$CFLAGS -O3"
   PHP_NEW_EXTENSION(ip2country, ip2country.c, $ext_shared)
 fi

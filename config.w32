@@ -1,7 +1,0 @@
-// $Id$
-// vim:ft=javascript
-
-if (PHP_IP2COUNTRY != "no") {
-	EXTENSION("ip2country", "ip2country.c");
-}
-

@@ -39,7 +39,7 @@ zend_module_entry ip2country_module_entry = {
 	PHP_MSHUTDOWN(ip2country),
 	NULL,
 	NULL,
-	NULL,
+	PHP_MINFO(ip2country),
 #if ZEND_MODULE_API_NO >= 20010901
 	"1.0",
 #endif
@@ -238,7 +238,7 @@ PHP_FUNCTION(ip2country) {
         unsigned long ip;
 
         // this check will also print if arguments are missing or wrong
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|b", &zip, &full) == FAILURE) {
+        if (zend_parse_parameters_ex(0, ZEND_NUM_ARGS() TSRMLS_CC, "z|b", &zip, &full) == FAILURE) {
                 RETURN_NULL();
         }
 
@@ -290,7 +290,7 @@ PHP_FUNCTION(code2country) {
         int        code_len;
         country_t* country;
 
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &code, &code_len) == FAILURE) {
+        if (zend_parse_parameters_ex(0, ZEND_NUM_ARGS() TSRMLS_CC, "s", &code, &code_len) == FAILURE) {
                 RETURN_NULL();
         }
 

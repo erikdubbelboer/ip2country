@@ -1,3 +1,4 @@
+
 ip2country
 ==========
 
@@ -7,7 +8,7 @@ You can send comments, patches, questions [here on github](https://github.com/Er
 
 
 Installing/Configuring
-======================
+----------------------
 
 To build the database, run:
 
@@ -26,7 +27,7 @@ To install the module, run:
 
 <pre>
 phpize
-./configure CFLAGS="-O3"
+./configure
 make
 sudo make install
 </pre>
@@ -43,8 +44,11 @@ Now copy `ip2country.ini` to your php install's configuration directory. On Gent
 cp ip2country.ini /etc/php5/conf.d/
 </pre>
 
+After restarting php the extension should be working.
+
+
 Usage
-=====
+-----
 
 The module introduces 3 new functions to php.
 
